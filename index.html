@@ -307,7 +307,7 @@ $('#fObs').onchange=function(){F.obs=this.value;render()};$('#fQ').oninput=funct
 // ---------- being page ----------
 function get(id){for(var i=0;i<B.length;i++)if(B[i].id===id)return B[i];return null}
 function select(id,opt){opt=opt||{};SEL=id;var b=get(id);if(!b)return;$('#sheet').hidden=false;render();sheet();$('#sTag').hidden=false;$('#mTag').hidden=false;live(b);
-  try{history.replaceState(null,'','#b='+id)}catch(e){}if(opt.scroll!==false)$('#sheet').scrollIntoView({behavior:'smooth',block:'nearest'})}
+  if(!opt.nohash)try{history.replaceState(null,'','#b='+id)}catch(e){}if(opt.scroll!==false)$('#sheet').scrollIntoView({behavior:'smooth',block:'nearest'})}
 function pct(b){return Math.min(100,Math.round(balance(b)/CAP*1000)/10)}
 function sheet(){var b=get(SEL);if(!b)return;$('#sName').textContent=b.name+' · $'+b.tk;$('#sTtl').textContent=cd(ttl(b));$('#sState').innerHTML=stateOf(b);$('#sObs').textContent=b.obs;$('#sAddr').textContent=addr(b.id);$('#sBal').textContent=fmt(balance(b));$('#sFed').textContent=fmt(b.fed);$('#sRet').textContent=fmt(b.ret);
   $('#sLife').className='life'+(awake(b)?'':' off');$('#sLife').firstChild.style.width=pct(b)+'%';$('#sLifePct').textContent=pct(b)+'% of cap · '+fmt(balance(b));
@@ -400,7 +400,7 @@ var TERM=(function(){var out=$('#tOut'),inp=$('#tIn'),hist=[],hi=-1;
   print('ttl terminal. every rule on this page, as commands. type <b>help</b>.','z');print(B.length+' beings · '+B.filter(awake).length+' awake · rehearsal in your browser','z');
   return {run:run,print:print,focus:function(){inp.focus()}}})();
 // ---------- boot ----------
-render();(function(){var m=location.hash.match(/^#b=([0-9a-f]+)$/i);var b=m&&get(m[1]);if(b){if(!awake(b)){F.state='all';setOn('#fState',$('#fState button[data-f=all]'));render()}select(b.id);return}var first=list()[0]||B[0];if(first)select(first.id,{scroll:false})})();
+render();(function(){var m=location.hash.match(/^#b=([0-9a-f]+)$/i);var b=m&&get(m[1]);if(b){if(!awake(b)){F.state='all';setOn('#fState',$('#fState button[data-f=all]'));render()}select(b.id);return}var sec=location.hash&&/^#[a-z]+$/.test(location.hash)&&$(location.hash);var first=list()[0]||B[0];if(first)select(first.id,{scroll:false,nohash:!!sec});if(sec)setTimeout(function(){sec.scrollIntoView()},30)})();
 // reveal + scroll spy
 (function(){var els=document.querySelectorAll('.rv');function sweep(){els.forEach(function(e){if(e.getBoundingClientRect().top<innerHeight)e.classList.add('vis')})}addEventListener('scroll',sweep,{passive:true});setInterval(sweep,700);sweep();
 var links=[].slice.call(document.querySelectorAll('nav ul a')).filter(function(a){return a.getAttribute('href').charAt(0)==='#'});
