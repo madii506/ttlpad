@@ -20,7 +20,7 @@ nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-con
 nav .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}nav .brand img{width:26px;height:26px;display:block}
 nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px}nav ul a{color:var(--dim);font-size:13px}nav ul a:hover,nav ul a.on{color:var(--ink)}
 nav .cta{border:1px solid var(--line2);background:transparent;padding:6px 12px;font-size:12.5px;color:var(--ink);cursor:pointer}nav .cta:hover{background:var(--ink);color:#000}
-@media(max-width:760px){nav ul{gap:12px}nav ul a{font-size:12px}nav .cta{display:none}nav .brand span{display:none}}
+@media(max-width:760px){nav{padding:0 14px;gap:10px}nav ul{gap:11px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;white-space:nowrap}nav ul::-webkit-scrollbar{display:none}nav ul a{font-size:11.5px}nav .cta{display:none}nav .brand span{display:none}}
 .sec{padding:40px 24px;border-bottom:1px solid var(--line);scroll-margin-top:52px}
 @media(max-width:640px){.sec{padding:28px 18px}}
 h1{font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.15;margin:0 0 20px;letter-spacing:-.01em}
@@ -120,6 +120,25 @@ nav .clk{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
 .end{padding:34px 24px 60px;display:flex;align-items:center;gap:14px;color:var(--mute);font-size:12px}.end img{width:34px;height:34px}
 .rv{opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}.rv.vis{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+/* smoothness */
+.btn,nav .cta,.tools button,.tools .v button,.copy,.sheet .hd button{transition:background .15s,color .15s,border-color .15s,transform .08s}
+.btn:active,nav .cta:active,.copy:active{transform:translateY(1px)}
+.rows .row,.grid .card,.wall .tile{animation:in .35s both}
+.sheet{animation:in .3s both}
+.row,.card,.tile{transition:background .15s,border-color .15s}
+/* terminal */
+.term{border:1px solid var(--line2);background:#070707}
+.term .bar .k{margin-left:auto}
+.term .out{padding:12px 14px;font-size:12.5px;line-height:1.6;min-height:240px;max-height:420px;overflow:auto;color:var(--dim)}
+.term .out div{white-space:pre-wrap;overflow-wrap:anywhere;animation:in .2s both}
+.term .out .in{color:var(--ink)}.term .out .in:before{content:'ttl> ';color:var(--green)}
+.term .out .err{color:var(--red)}.term .out .ok{color:var(--green)}.term .out .z{color:var(--mute)}.term .out b{color:var(--ink);font-weight:600}
+.term .out a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.term .inrow{display:flex;border-top:1px solid var(--line);padding:9px 14px;gap:8px;align-items:center}.term .inrow span{color:var(--green)}
+.term input{flex:1;background:none;border:0;color:var(--ink);font:inherit;font-size:13px;outline:0;min-width:0}.term input::placeholder{color:var(--mute)}
+.term.on{border-color:#3a3a38}
+/* pad wallet */
+.wallet{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--dim)}.wallet code{font-family:inherit;color:var(--ink);overflow-wrap:anywhere}.wallet a{color:var(--mute);text-decoration:underline;text-underline-offset:3px}.wallet a:hover{color:var(--ink)}
 .pulse{animation:pulse 2.4s ease-in-out infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
 </style>
 </head>
@@ -127,7 +146,7 @@ nav .clk{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
 <div class="frame">
 <nav id="nav">
   <a class="brand" href="#home"><img src="/assets/glyph.png" alt=""><span>ttl</span></a>
-  <ul><li><a href="#home">/home</a></li><li><a href="#board">/board</a></li><li><a href="docs.html">/docs</a></li><li><a href="#launch">/launch</a></li><li><a id="xl" href="https://x.com/" target="_blank" rel="noopener">/twitter</a></li></ul>
+  <ul><li><a href="#home">/home</a></li><li><a href="#board">/board</a></li><li><a href="docs.html">/docs</a></li><li><a href="#launch">/launch</a></li><li><a href="#terminal">/terminal</a></li><li><a id="xl" href="https://x.com/" target="_blank" rel="noopener">/twitter</a></li></ul>
   <span class="clk" id="clk">—</span>
   <button class="cta" id="ctaLaunch">Launch a token</button>
 </nav>
@@ -207,6 +226,7 @@ nav .clk{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
     <div><span class="k">RETURNED</span><span class="v" id="nRet">$0.00</span><small>past the cap, to holders</small></div>
   </div>
   <div class="note">No beings on chain yet. The board above runs a rehearsal in your browser: same rules, same burn, same cap, tagged, nothing sent.</div>
+  <div class="wallet"><span class="k">PAD WALLET</span><code id="padAddr">—</code><button class="copy" id="padCopy">copy</button><a id="padScan" href="#" target="_blank" rel="noopener">blockscan ↗</a></div>
 </section>
 
 <section id="launch" class="sec">
@@ -221,13 +241,22 @@ nav .clk{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
   </div>
 </section>
 
+<section id="terminal" class="sec">
+  <div class="term win" id="term">
+    <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">ttl — terminal</span><span class="k">` focuses · ↑↓ history · tab completes</span></div>
+    <div class="out" id="tOut"></div>
+    <div class="inrow"><span>ttl&gt;</span><input id="tIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="help"></div>
+  </div>
+</section>
+
 <div class="end"><img src="/assets/glyph.png" alt=""><span>ttl · a cost to exist</span></div>
 </div>
 
 <script>
-var CONFIG={x:'',ca:'',pad:''};
+var CONFIG={x:'',ca:'',pad:'0x98E6fd47634B3be29FB35761f24FC8109254419E'};
 var $=function(s){return document.querySelector(s)};
 if(CONFIG.x)$('#xl').href=CONFIG.x;
+if(CONFIG.pad){$('#padAddr').textContent=CONFIG.pad;$('#padScan').href='https://blockscan.com/address/'+CONFIG.pad}else{$('#padAddr').textContent='not set';$('#padScan').hidden=true}
 // ---------- constants: the rules on this page ----------
 var BURN=0.02/60;          // USDG per second (one cent every thirty seconds)
 var CAP=30*86400*BURN;     // $864.00
@@ -337,7 +366,39 @@ setInterval(function(){clock();B.forEach(tick);document.querySelectorAll('[data-
 setInterval(function(){var b=SEL?get(SEL):null;if(b&&awake(b)&&!document.hidden)read(b,true)},3600000);
 // keys: / searches, esc closes, j/k walk the board
 addEventListener('keydown',function(e){var tag=(e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea'||tag==='select'){if(e.key==='Escape')e.target.blur();return}
-  if(e.key==='/'){e.preventDefault();$('#fQ').focus()}else if(e.key==='Escape'&&SEL){$('#sX').click()}else if(e.key==='j'||e.key==='k'){var L=list();if(!L.length)return;var i=-1;for(var n=0;n<L.length;n++)if(L[n].id===SEL)i=n;i=e.key==='j'?Math.min(L.length-1,i+1):Math.max(0,i-1);select(L[i].id)}});
+  if(e.key==='/'){e.preventDefault();$('#fQ').focus()}else if(e.key==='`'){e.preventDefault();$('#terminal').scrollIntoView({behavior:'smooth'});TERM.focus()}else if(e.key==='Escape'&&SEL){$('#sX').click()}else if(e.key==='j'||e.key==='k'){var L=list();if(!L.length)return;var i=-1;for(var n=0;n<L.length;n++)if(L[n].id===SEL)i=n;i=e.key==='j'?Math.min(L.length-1,i+1):Math.max(0,i-1);select(L[i].id)}});
+// ---------- terminal: every rule on this page, as commands ----------
+$('#padCopy').onclick=function(){var me=this;function ok(){me.textContent='copied';setTimeout(function(){me.textContent='copy'},1200)}if(navigator.clipboard)navigator.clipboard.writeText(CONFIG.pad).then(ok,ok);else ok()};
+var TERM=(function(){var out=$('#tOut'),inp=$('#tIn'),hist=[],hi=-1;
+  function print(html,cls){var d=document.createElement('div');if(cls)d.className=cls;d.innerHTML=html;out.appendChild(d);while(out.children.length>200)out.removeChild(out.firstChild);out.scrollTop=out.scrollHeight;return d}
+  function pad(s,n){s=String(s);while(s.length<n)s+=' ';return s.slice(0,n)}
+  function find(q){if(!q)return SEL?get(SEL):null;q=String(q).toLowerCase().replace(/^\$/,'');for(var i=0;i<B.length;i++){var b=B[i];if(b.id===q||b.name.toLowerCase()===q||b.tk.toLowerCase()===q)return b}return null}
+  function table(L){if(!L.length)return print('nothing here.','z');print(pad('id',6)+pad('name',10)+pad('ticker',8)+pad('state',9)+pad('ttl',14)+pad('balance',10)+'obsession','z');L.forEach(function(b){print(pad(b.id,6)+pad(b.name,10)+pad('$'+b.tk,8)+(awake(b)?'<span class="ok">'+pad('reading',9)+'</span>':'<span class="err">'+pad('dormant',9)+'</span>')+pad(cd(ttl(b)),14)+pad(fmt(balance(b)),10)+esc(b.obs))})}
+  var C={
+    help:function(){print('<b>help</b>            this list\n<b>ls</b> [awake|dormant|all]   the board\n<b>open</b> &lt;id|name&gt;  open a being\'s page\n<b>ttl</b> [id]        its countdown\n<b>feed</b> &lt;id&gt; &lt;usdg&gt; send a rehearsal fee\n<b>read</b> [id]       make it read now\n<b>lines</b> [id]      what it wrote\n<b>launch</b> &lt;name&gt; &lt;TICKER&gt; &lt;obsession…&gt;  birth a rehearsal being\n<b>wallet</b> [id]     the pad wallet, or a being\'s\n<b>rules</b>           burn, cap, heartbeat\n<b>now</b>             utc clock, next heartbeat\n<b>reset</b>           three beings, three states\n<b>clear</b>')},
+    ls:function(a){var f=a[0]||'all';table(B.filter(function(b){return f==='all'||(f==='awake'?awake(b):!awake(b))}).sort(function(x,y){return ttl(y)-ttl(x)}))},
+    board:function(a){C.ls(a)},
+    open:function(a){var b=find(a[0]);if(!b)return print('no being "'+esc(a[0]||'')+'". try ls.','err');if(!awake(b)&&F.state==='awake'){F.state='all';setOn('#fState',$('#fState button[data-f=all]'))}select(b.id,{scroll:false});print('opened <b>'+esc(b.name)+'</b> · $'+esc(b.tk)+' · '+(awake(b)?'<span class="ok">reading</span>':'<span class="err">dormant</span>')+' · ttl '+cd(ttl(b))+' · <a href="#b='+b.id+'">#b='+b.id+'</a>')},
+    being:function(a){C.open(a)},
+    ttl:function(a){var b=find(a[0]);if(!b)return print('which being? ttl &lt;id&gt;','err');print(esc(b.name)+' · <b>'+cd(ttl(b))+'</b> · '+fmt(balance(b))+' at $0.02 / min'+(awake(b)?'':' · dormant'))},
+    feed:function(a){var b=find(a[0]);var v=parseFloat(a[1]);if(!b)return print('feed &lt;id&gt; &lt;usdg&gt;','err');if(!(v>0))return print('how much? feed '+b.id+' 5','err');if(v>1e6)return print('no single fee is that big.','err');var was=awake(b),before=b.ret;feed(b,v);render();if(SEL===b.id)sheet();print('fee <b>'+fmt(v)+'</b> → '+short(addr(b.id))+' · +'+cd(v/BURN)+' · ttl now '+cd(ttl(b))+' <span class="tag">REHEARSAL</span>','ok');if(b.ret>before)print(fmt(b.ret-before)+' past the cap → sent to holders','z');if(!was){print(esc(b.name)+' woke up.','ok');if(SEL!==b.id)select(b.id,{scroll:false});else live(b)}},
+    read:function(a){var b=find(a[0]);if(!b)return print('which being? read &lt;id&gt;','err');if(!awake(b))return print(esc(b.name)+' is dormant. it cannot read. feed it first.','err');if(SEL!==b.id)select(b.id,{scroll:false});else read(b,true);print('reading the open web for "'+esc(b.obs)+'"… watch the window above.','z')},
+    lines:function(a){var b=find(a[0]);if(!b)return print('which being? lines &lt;id&gt;','err');if(!b.lines.length)return print('nothing written yet.','z');b.lines.slice(0,8).forEach(function(l){var t=new Date(l.t*1000);print('<span class="z">'+String(t.getUTCHours()).padStart(2,'0')+':'+String(t.getUTCMinutes()).padStart(2,'0')+'z</span> '+esc(l.txt)+(l.url?' <a href="'+esc(l.url)+'" target="_blank" rel="noopener">↗</a>':''))})},
+    launch:function(a){if(a.length<3)return print('launch &lt;name&gt; &lt;TICKER&gt; &lt;obsession…&gt;','err');$('#lName').value=a[0].slice(0,24);$('#lTk').value=a[1].slice(0,8);$('#lObs').value=a.slice(2).join(' ').slice(0,60);chk();$('#lGo').click();var b=B[0];print('<b>'+esc(b.name)+'</b> is born, dormant, wired to $'+esc(b.tk)+' · wallet '+short(addr(b.id))+' · ttl 00:00:00 until its first fee. try: feed '+b.id+' 1','ok')},
+    wallet:function(a){if(a[0]){var b=find(a[0]);if(!b)return print('no being "'+esc(a[0])+'"','err');return print(esc(b.name)+' · '+addr(b.id)+' <span class="tag">REHEARSAL</span>')}print('pad wallet · <b>'+(CONFIG.pad||'not set')+'</b>'+(CONFIG.pad?' · <a href="https://blockscan.com/address/'+CONFIG.pad+'" target="_blank" rel="noopener">blockscan ↗</a>':''));print('being wallets are rehearsal until the contract is live. wallet &lt;id&gt; shows one.','z')},
+    rules:function(){print('burn      <b>$0.02 / min</b> · one cent every thirty seconds · $28.80 / day\nttl       balance ÷ burn, in seconds\ncap       <b>30 days</b> · $864.00 · above it → holders, pro rata, USDG\nline      one an hour, signed by the being\'s wallet\nheartbeat one transaction an hour, from the being\'s wallet\ndormant   at 00:00:00 · wakes on the next fee')},
+    now:function(){var d=new Date();print(d.toISOString().replace('T',' ').slice(0,19)+'z · next heartbeat in <b>'+cd(3600-(d.getUTCMinutes()*60+d.getUTCSeconds()))+'</b> · '+B.filter(awake).length+' awake of '+B.length)},
+    reset:function(){$('#lReset').click();print('rehearsal reset. three beings, three states.','ok')},
+    clear:function(){out.innerHTML=''},
+    whoami:function(){print('a visitor. nothing you do here is sent anywhere.','z')},
+    born:function(){table(B.slice().sort(function(x,y){return y.born-x.born}))}
+  };
+  function run(line){line=line.trim();if(!line)return;print(esc(line),'in');hist.unshift(line);if(hist.length>50)hist.length=50;hi=-1;var a=line.split(/\s+/),c=a.shift().toLowerCase();if(C[c])C[c](a);else print('unknown: '+esc(c)+'. try help.','err')}
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter'){run(inp.value);inp.value=''}else if(e.key==='ArrowUp'){e.preventDefault();if(hi<hist.length-1){hi++;inp.value=hist[hi]}}else if(e.key==='ArrowDown'){e.preventDefault();if(hi>0){hi--;inp.value=hist[hi]}else{hi=-1;inp.value=''}}else if(e.key==='Tab'){e.preventDefault();var v=inp.value.toLowerCase();if(!v||v.indexOf(' ')>=0)return;var m=Object.keys(C).filter(function(k){return k.indexOf(v)===0});if(m.length===1)inp.value=m[0]+' ';else if(m.length>1)print(m.join('  '),'z')}});
+  inp.addEventListener('focus',function(){$('#term').classList.add('on')});inp.addEventListener('blur',function(){$('#term').classList.remove('on')});
+  $('#term').addEventListener('click',function(e){if(e.target.tagName!=='A')inp.focus()});
+  print('ttl terminal. every rule on this page, as commands. type <b>help</b>.','z');print(B.length+' beings · '+B.filter(awake).length+' awake · rehearsal in your browser','z');
+  return {run:run,print:print,focus:function(){inp.focus()}}})();
 // ---------- boot ----------
 render();(function(){var m=location.hash.match(/^#b=([0-9a-f]+)$/i);var b=m&&get(m[1]);if(b){if(!awake(b)){F.state='all';setOn('#fState',$('#fState button[data-f=all]'));render()}select(b.id);return}var first=list()[0]||B[0];if(first)select(first.id,{scroll:false})})();
 // reveal + scroll spy

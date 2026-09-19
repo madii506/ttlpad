@@ -19,7 +19,7 @@ nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-con
 nav .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}nav .brand img{width:26px;height:26px;display:block}
 nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px}nav ul a{color:var(--dim);font-size:13px}nav ul a:hover,nav ul a.on{color:var(--ink)}
 nav .cta{border:1px solid var(--line2);background:transparent;padding:6px 12px;font-size:12.5px;color:var(--ink);cursor:pointer}nav .cta:hover{background:var(--ink);color:#000}
-@media(max-width:760px){nav ul{gap:12px}nav ul a{font-size:12px}nav .cta{display:none}nav .brand span{display:none}}
+@media(max-width:760px){nav{padding:0 14px;gap:10px}nav ul{gap:11px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;white-space:nowrap}nav ul::-webkit-scrollbar{display:none}nav ul a{font-size:11.5px}nav .cta{display:none}nav .brand span{display:none}}
 .sec{padding:40px 24px;border-bottom:1px solid var(--line);scroll-margin-top:52px}
 @media(max-width:640px){.sec{padding:28px 18px}}
 h1{font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.15;margin:0 0 20px;letter-spacing:-.01em}
@@ -28,7 +28,8 @@ p{color:var(--dim);max-width:62ch;margin:0 0 14px}p b{color:var(--ink);font-weig
 .k{font-size:11px;color:var(--mute);letter-spacing:.06em}
 /* hero */
 .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:start}
-@media(max-width:900px){.hero{grid-template-columns:1fr;gap:26px}}
+@media(max-width:900px){.hero{grid-template-columns:minmax(0,1fr);gap:26px}}
+.hero>div{min-width:0}.win .bar .url{min-width:0}
 .btns{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
 .btn{border:1px solid var(--line2);background:transparent;padding:10px 16px;font-size:13px;cursor:pointer;color:var(--ink)}.btn:hover{border-color:var(--ink)}
 .btn.pri{background:var(--ink);color:#000;border-color:var(--ink)}.btn.pri:hover{background:#fff}
@@ -42,7 +43,7 @@ p{color:var(--dim);max-width:62ch;margin:0 0 14px}p b{color:var(--ink);font-weig
 .screen{padding:12px 14px;min-height:190px;font-size:12px;line-height:1.55;color:var(--dim);white-space:pre-wrap;overflow-wrap:anywhere}
 .screen .t{color:var(--ink)}.screen .u{color:var(--mute)}.screen .cur{display:inline-block;width:7px;height:13px;background:var(--ink);vertical-align:-2px;animation:blink 1s steps(1,end) infinite}
 @keyframes blink{50%{opacity:0}}
-.screen .row{display:block;padding:2px 0}.screen .row.hi{background:#151515;margin:0 -14px;padding:2px 14px}
+.screen .hit{display:block;padding:2px 0}.screen .hit.hi{background:#151515;margin:0 -14px;padding:2px 14px}
 .think{border-top:1px solid var(--line);padding:12px 14px;font-size:12.5px;color:var(--ink);min-height:44px}
 .think .z{color:var(--mute)}
 .meta{border-top:1px solid var(--line);padding:9px 14px;font-size:11.5px;color:var(--mute);display:flex;gap:18px;flex-wrap:wrap}.meta b{color:var(--dim);font-weight:500}
@@ -118,6 +119,25 @@ nav .clk{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
 .end{padding:34px 24px 60px;display:flex;align-items:center;gap:14px;color:var(--mute);font-size:12px}.end img{width:34px;height:34px}
 .rv{opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}.rv.vis{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+/* smoothness */
+.btn,nav .cta,.tools button,.tools .v button,.copy,.sheet .hd button{transition:background .15s,color .15s,border-color .15s,transform .08s}
+.btn:active,nav .cta:active,.copy:active{transform:translateY(1px)}
+.rows .row,.grid .card,.wall .tile{animation:in .35s both}
+.sheet{animation:in .3s both}
+.row,.card,.tile{transition:background .15s,border-color .15s}
+/* terminal */
+.term{border:1px solid var(--line2);background:#070707}
+.term .bar .k{margin-left:auto}
+.term .out{padding:12px 14px;font-size:12.5px;line-height:1.6;min-height:240px;max-height:420px;overflow:auto;color:var(--dim)}
+.term .out div{white-space:pre-wrap;overflow-wrap:anywhere;animation:in .2s both}
+.term .out .in{color:var(--ink)}.term .out .in:before{content:'ttl> ';color:var(--green)}
+.term .out .err{color:var(--red)}.term .out .ok{color:var(--green)}.term .out .z{color:var(--mute)}.term .out b{color:var(--ink);font-weight:600}
+.term .out a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.term .inrow{display:flex;border-top:1px solid var(--line);padding:9px 14px;gap:8px;align-items:center}.term .inrow span{color:var(--green)}
+.term input{flex:1;background:none;border:0;color:var(--ink);font:inherit;font-size:13px;outline:0;min-width:0}.term input::placeholder{color:var(--mute)}
+.term.on{border-color:#3a3a38}
+/* pad wallet */
+.wallet{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--dim)}.wallet code{font-family:inherit;color:var(--ink);overflow-wrap:anywhere}.wallet a{color:var(--mute);text-decoration:underline;text-underline-offset:3px}.wallet a:hover{color:var(--ink)}
 .pulse{animation:pulse 2.4s ease-in-out infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
 </style>
 <style>
@@ -135,7 +155,7 @@ nav .clk{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
 <div class="frame">
 <nav>
   <a class="brand" href="/"><img src="/assets/glyph.png" alt=""><span>ttl</span></a>
-  <ul><li><a href="/#home">/home</a></li><li><a href="/#board">/board</a></li><li><a href="docs.html" class="on">/docs</a></li><li><a href="/#launch">/launch</a></li><li><a href="https://x.com/" target="_blank" rel="noopener">/twitter</a></li></ul>
+  <ul><li><a href="/#home">/home</a></li><li><a href="/#board">/board</a></li><li><a href="docs.html" class="on">/docs</a></li><li><a href="/#launch">/launch</a></li><li><a href="/#terminal">/terminal</a></li><li><a href="https://x.com/" target="_blank" rel="noopener">/twitter</a></li></ul>
   <span class="clk" id="clk">—</span>
   <a class="cta" href="/#launch" style="text-decoration:none">Launch a token</a>
 </nav>
