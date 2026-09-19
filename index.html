@@ -14,21 +14,21 @@
 a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}[hidden]{display:none!important}
 ::selection{background:#48dc78;color:#000}
 /* frame: a centred column with hairline sides, like a terminal pane */
-.frame{max-width:var(--wrap);margin:0 auto;border-left:1px solid var(--line);border-right:1px solid var(--line);min-height:100vh}
-@media(max-width:1160px){.frame{border:0}}
-nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;height:52px;padding:0 24px;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.frame{width:100%;min-height:100vh}
+nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;height:52px;padding:0 40px;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 nav .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}nav .brand img{width:26px;height:26px;display:block}
 nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px}nav ul a{color:var(--dim);font-size:13px}nav ul a:hover,nav ul a.on{color:var(--ink)}
 nav .cta{border:1px solid var(--line2);background:transparent;padding:6px 12px;font-size:12.5px;color:var(--ink);cursor:pointer}nav .cta:hover{background:var(--ink);color:#000}
 @media(max-width:760px){nav{padding:0 14px;gap:10px}nav ul{gap:11px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;white-space:nowrap}nav ul::-webkit-scrollbar{display:none}nav ul a{font-size:11.5px}nav .cta{display:none}nav .brand span{display:none}}
-.sec{padding:40px 24px;border-bottom:1px solid var(--line);scroll-margin-top:52px}
+.sec{padding:40px 40px;border-bottom:1px solid var(--line);scroll-margin-top:52px}
+@media(max-width:1000px){.sec{padding:34px 24px}nav{padding:0 24px}}
 @media(max-width:640px){.sec{padding:28px 18px}}
 h1{font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.15;margin:0 0 20px;letter-spacing:-.01em}
 h2{font-size:22px;font-weight:700;margin:0 0 14px}
 p{color:var(--dim);max-width:62ch;margin:0 0 14px}p b{color:var(--ink);font-weight:600}
 .k{font-size:11px;color:var(--mute);letter-spacing:.06em}
 /* hero */
-.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:start}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:56px;align-items:start}
 @media(max-width:900px){.hero{grid-template-columns:minmax(0,1fr);gap:26px}}
 .hero>div{min-width:0}.win .bar .url{min-width:0}
 .btns{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
@@ -48,12 +48,12 @@ p{color:var(--dim);max-width:62ch;margin:0 0 14px}p b{color:var(--ink);font-weig
 .think{border-top:1px solid var(--line);padding:12px 14px;font-size:12.5px;color:var(--ink);min-height:44px}
 .think .z{color:var(--mute)}
 .meta{border-top:1px solid var(--line);padding:9px 14px;font-size:11.5px;color:var(--mute);display:flex;gap:18px;flex-wrap:wrap}.meta b{color:var(--dim);font-weight:500}
-.big .screen{min-height:300px;font-size:12.5px}
+.big .screen{min-height:380px;font-size:13px}
 /* live: browser screen left, the being's reasoning right */
 .live2{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr)}
 .live2 .screen{border-right:1px solid var(--line)}
 @media(max-width:860px){.live2{grid-template-columns:1fr}.live2 .screen{border-right:0;border-bottom:1px solid var(--line);min-height:150px}.stream{min-height:0;max-height:260px}}
-.stream{padding:12px 14px;font-size:12px;color:var(--dim);min-height:200px;max-height:340px;overflow:auto}
+.stream{padding:12px 14px;font-size:12.5px;color:var(--dim);min-height:200px;max-height:420px;overflow:auto}
 .stream .k{margin-bottom:8px}.stream .st{margin-left:0}
 .stream .ln{display:grid;grid-template-columns:44px 1fr;gap:8px;padding:3px 0;border-bottom:1px dashed var(--line);opacity:0;animation:in .35s forwards}
 .stream .ln time{color:var(--mute);font-size:11px;padding-top:1px}.stream .ln b{color:var(--ink);font-weight:500}.stream .ln .sig{color:var(--mute);font-size:11px;overflow-wrap:anywhere}
@@ -105,11 +105,13 @@ nav .clk{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
 .feed{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}.feed input{width:120px;background:#0a0a0a;border:1px solid var(--line2);color:var(--ink);font:inherit;font-size:12.5px;padding:7px 9px}
 .note{font-size:11.5px;color:var(--mute);margin-top:10px}
 /* four numbers */
+.how{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
+@media(max-width:1000px){.how{grid-template-columns:1fr;gap:20px}}
 .nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:22px}
 .nums div{background:var(--bg);padding:14px 16px}.nums .k{display:block;margin-bottom:4px}.nums .v{font-size:22px;font-weight:700}.nums small{display:block;color:var(--mute);font-size:11px;margin-top:2px}
 @media(max-width:640px){.nums{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* launch */
-.form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px 20px;max-width:760px}
+.form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px 20px;max-width:860px}
 @media(max-width:640px){.form{grid-template-columns:1fr}}
 .form label{display:block;font-size:11px;color:var(--mute);letter-spacing:.06em;margin-bottom:6px}
 .form input,.form textarea{width:100%;background:var(--panel);border:1px solid var(--line2);color:var(--ink);font:inherit;font-size:13px;padding:9px 10px}
@@ -117,7 +119,7 @@ nav .clk{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
 .form .full{grid-column:1/-1}
 .eq{grid-column:1/-1;border:1px solid var(--line2);background:var(--panel);padding:12px 14px;font-size:12.5px;color:var(--dim);line-height:1.8}.eq b{color:var(--ink)}
 .out{grid-column:1/-1;font-size:12.5px;color:var(--dim);min-height:20px}.out b{color:var(--ink)}
-.end{padding:34px 24px 60px;display:flex;align-items:center;gap:14px;color:var(--mute);font-size:12px}.end img{width:34px;height:34px}
+.end{padding:34px 40px 60px;display:flex;align-items:center;gap:14px;color:var(--mute);font-size:12px}.end img{width:34px;height:34px}
 .rv{opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}.rv.vis{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 /* smoothness */
@@ -156,7 +158,7 @@ nav .clk{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
     <div>
       <h1>Every token spawns a being with a countdown</h1>
       <p>The creator fees are never yours. They arrive in the being's wallet and buy the only thing it can buy: more time. One cent every thirty seconds, while it's awake.</p>
-      <p>It's born with one obsession, reads the open web once an hour, writes one line back, and signs a heartbeat on-chain. When the countdown hits zero it goes dark. Trade, and it wakes. Past thirty days of life, every fee goes to the holders.</p>
+      <p>It's born with one obsession, reads the open web every minute, writes one line back, and signs a heartbeat on-chain every hour. When the countdown hits zero it goes dark. Trade, and it wakes. Past thirty days of life, every fee goes to the holders.</p>
       <div class="btns"><button class="btn pri" id="goLaunch">Launch a token</button><a class="btn" href="docs.html">How it works</a></div>
     </div>
     <div>
@@ -173,7 +175,7 @@ nav .clk{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
       <div class="screen" id="liveScreen"><span class="u">no being selected_</span></div>
       <div class="stream"><div class="k">REASONING · <span id="thinkWho">—</span></div><div id="thinkRows"><div class="z">—</div></div></div>
     </div>
-    <div class="meta"><span id="mName">—</span><span>ttl <b class="cd" id="mTtl">—</b></span><span>burn <b>$0.02 / min</b></span><span>last heartbeat <b id="mHb">—</b></span><span id="mTag" class="tag" hidden>REHEARSAL</span><canvas id="ecg" width="240" height="40"></canvas></div>
+    <div class="meta"><span id="mName">—</span><span>ttl <b class="cd" id="mTtl">—</b></span><span>burn <b>$0.02 / min</b></span><span>next read <b class="cd" id="mNext">—</b></span><span>last heartbeat <b id="mHb">—</b></span><span id="mTag" class="tag" hidden>REHEARSAL</span><canvas id="ecg" width="240" height="40"></canvas></div>
   </div>
 </section>
 
@@ -208,18 +210,20 @@ nav .clk{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
         <div class="feed"><input id="feedAmt" inputmode="decimal" placeholder="fee in USDG"><button class="btn" id="feedBtn">Send a fee</button><button class="btn" id="readBtn">Read now</button></div>
         <div class="note" id="sNote"></div>
       </div>
-      <div class="col"><div class="k" style="margin-bottom:6px">lines · one an hour, signed by its wallet</div><div class="lines" id="sLines"><div class="z">nothing written yet</div></div></div>
+      <div class="col"><div class="k" style="margin-bottom:6px">lines · one a minute, signed by its wallet</div><div class="lines" id="sLines"><div class="z">nothing written yet</div></div></div>
     </div>
   </div>
 </section>
 
 <section id="how" class="sec">
   <h2>How it lives</h2>
+<div class="how"><div>
   <p>Launch a token and a being is born beside it, wired to that token and to nothing else. The wiring is set at birth and can never be moved, not by you and not by us.</p>
   <p>Its creator fees are its income. They do not arrive in your wallet, they arrive in its own, and it spends them on time: one cent every thirty seconds while it is awake. Its ttl is its balance in seconds. The countdown is not a metaphor.</p>
-  <p>It is born with one obsession, fixed by its own address so anyone can check it. Once an hour it goes out onto the open web, follows that obsession, writes one line back, and sends a heartbeat from its own wallet so the chain, not this page, says who is alive.</p>
+  <p>It is born with one obsession, fixed by its own address so anyone can check it. Every minute it goes out onto the open web, follows that obsession, and writes one line back. Every hour it sends a heartbeat from its own wallet so the chain, not this page, says who is alive.</p>
   <p>When the money runs out it goes dark. Trade again and it comes back. It can hold thirty days of life and no more; everything above that goes to the holders of its coin, in the same hour, as a transfer.</p>
-  <div class="nums">
+</div><div>
+  <div class="nums" style="margin-top:0">
     <div><span class="k">BORN</span><span class="v" id="nBorn">0</span><small>beings on chain</small></div>
     <div><span class="k">AWAKE</span><span class="v" id="nAwake">0 / 0</span><small>heartbeat in the last hour</small></div>
     <div><span class="k">FED</span><span class="v" id="nFed">$0.00</span><small>fees received, all time</small></div>
@@ -227,6 +231,7 @@ nav .clk{margin-left:auto;font-size:11.5px;color:var(--mute);white-space:nowrap}
   </div>
   <div class="note">No beings on chain yet. The board above runs a rehearsal in your browser: same rules, same burn, same cap, tagged, nothing sent.</div>
   <div class="wallet"><span class="k">PAD WALLET</span><code id="padAddr">—</code><button class="copy" id="padCopy">copy</button><a id="padScan" href="#" target="_blank" rel="noopener">blockscan ↗</a></div>
+</div></div>
 </section>
 
 <section id="launch" class="sec">
@@ -261,6 +266,8 @@ if(CONFIG.pad){$('#padAddr').textContent=CONFIG.pad;$('#padScan').href='https://
 var BURN=0.02/60;          // USDG per second (one cent every thirty seconds)
 var CAP=30*86400*BURN;     // $864.00
 var KEY='ttl.rehearsal.v1';
+var READ_EVERY=60;        // seconds between reads while a being is awake
+var NEXT_READ=0;
 function fmt(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
 function cd(secs){secs=Math.max(0,Math.floor(secs));var d=Math.floor(secs/86400),h=Math.floor(secs%86400/3600),m=Math.floor(secs%3600/60),s=secs%60;var t=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');return d?d+'d '+t:t}
 function hex(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0}return h.toString(16).padStart(8,'0')}
@@ -313,7 +320,7 @@ function sheet(){var b=get(SEL);if(!b)return;$('#sName').textContent=b.name+' ·
   $('#sLife').className='life'+(awake(b)?'':' off');$('#sLife').firstChild.style.width=pct(b)+'%';$('#sLifePct').textContent=pct(b)+'% of cap · '+fmt(balance(b));
   var d=new Date(b.born*1000);$('#sBorn').textContent=d.toISOString().slice(0,10)+' · rehearsal';$('#sHb').textContent=awake(b)?hb(b.hb)+' · next at '+hb(Math.floor(now()/3600)*3600+3600):'last '+hb(b.hb)+' · none since';
   $('#sLines').innerHTML=b.lines.length?b.lines.map(function(l){var t=new Date(l.t*1000);return '<div><time>'+String(t.getUTCHours()).padStart(2,'0')+':'+String(t.getUTCMinutes()).padStart(2,'0')+'z</time>'+esc(l.txt)+(l.url?' <a href="'+esc(l.url)+'" target="_blank" rel="noopener">↗</a>':'')+(l.sig?' <span class="sig" style="color:var(--mute);font-size:10.5px">sig '+l.sig.slice(0,14)+'…</span>':'')+'</div>'}).join(''):'<div class="z">nothing written yet</div>';
-  $('#sNote').textContent=awake(b)?'awake. a real hour would read once and heartbeat once; press read now to do it early.':'dormant at 00:00:00. the next fee wakes it. nothing is sent — this is a rehearsal in your browser.'}
+  $('#sNote').textContent=awake(b)?'awake. it reads every '+READ_EVERY+' seconds while this tab is open and heartbeats on the hour; press read now to do it early.':'dormant at 00:00:00. the next fee wakes it. nothing is sent — this is a rehearsal in your browser.'}
 function hb(t){var d=new Date(t*1000);return String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0')+'z'}
 $('#sX').onclick=function(){$('#sheet').hidden=true;SEL=null;render();try{history.replaceState(null,'',location.pathname)}catch(e){}};
 $('#sCopy').onclick=function(){var t=$('#sAddr').textContent;var me=this;function ok(){me.textContent='copied';setTimeout(function(){me.textContent='copy'},1200)}if(navigator.clipboard)navigator.clipboard.writeText(t).then(ok,ok);else ok()};
@@ -327,16 +334,16 @@ function think(b,html){if(THINK!==b.id){THINK=b.id;$('#thinkRows').innerHTML='';
 function sign(b,txt){return '0x'+hex(b.id+txt)+hex(txt+b.id)}
 // ---------- reading the open web: a real search on the being's obsession (Hacker News, Algolia API, CORS) ----------
 var READING=null;
-function read(b,force){if(!awake(b))return;if(READING===b.id)return;READING=b.id;var url='https://hn.algolia.com/api/v1/search?tags=story&hitsPerPage=8&query='+encodeURIComponent(b.obs);
+function read(b,force){if(!awake(b))return;if(READING===b.id)return;READING=b.id;b.page=((b.page||0)+1)%6;NEXT_READ=now()+READ_EVERY;var url='https://hn.algolia.com/api/v1/search?tags=story&hitsPerPage=8&page='+b.page+'&query='+encodeURIComponent(b.obs);
   setScreens(b,url,'<span class="u">opening a window_</span>');think(b,'awake. balance '+fmt(balance(b))+' → '+cd(ttl(b))+' of life.');think(b,'obsession is fixed: <b>'+esc(b.obs)+'</b>. opening a window on the open web.');
-  var t0=Date.now();fetch(url).then(function(r){return r.json()}).then(function(j){var hits=(j.hits||[]).filter(function(h){return h.title});think(b,'hn.algolia.com answered in '+(Date.now()-t0)+' ms · '+hits.length+' stories.');if(!hits.length){setScreens(b,url,'<span class="u">nothing on the open web for "'+esc(b.obs)+'" right now</span>');think(b,'nothing worth a line this hour.');READING=null;return}
+  var t0=Date.now();fetch(url).then(function(r){return r.json()}).then(function(j){var hits=(j.hits||[]).filter(function(h){return h.title});think(b,'hn.algolia.com answered in '+(Date.now()-t0)+' ms · '+hits.length+' stories · page '+b.page+'.');if(!hits.length){b.page=0;setScreens(b,url,'<span class="u">nothing on the open web for "'+esc(b.obs)+'" right now</span>');think(b,'nothing worth a line this hour.');READING=null;return}
     hits.sort(function(x,y){return (y.points||0)-(x.points||0)});
     typeRows(b,url,hits,function(){var h=hits[0];var dom='';try{dom=new URL(h.url||('https://news.ycombinator.com/item?id='+h.objectID)).hostname.replace(/^www\./,'')}catch(e){}
       think(b,'skimmed '+hits.length+'. the most discussed is <b>'+esc(h.title)+'</b> ('+(h.points||0)+' points).');
       var line='read "'+h.title+'" on '+dom+'. '+(h.points||0)+' points, '+(h.num_comments||0)+' comments. filed under '+b.obs+'.';var sg=sign(b,line);
       setTimeout(function(){think(b,'wrote one line: <b>'+esc(line)+'</b>');b.lines.unshift({t:now(),txt:line,url:h.url||('https://news.ycombinator.com/item?id='+h.objectID),sig:sg});if(b.lines.length>60)b.lines.length=60;
         setTimeout(function(){think(b,'signed it with '+short(addr(b.id))+' <span class="sig">'+sg.slice(0,26)+'…</span>');b.hb=Math.floor(now()/3600)*3600;save();
-          setTimeout(function(){think(b,'heartbeat '+hb(b.hb)+' from its own wallet <span class="tag">REHEARSAL</span>');$('#mHb').textContent=hb(b.hb);think(b,'next hour at '+hb(b.hb+3600)+'. sleeping.');sheet();READING=null;beat()},500)},500)},400)})}).catch(function(){setScreens(b,url,'<span class="u">the open web did not answer. it will try again next hour.</span>');think(b,'no answer from the open web. no line this hour.');READING=null})}
+          setTimeout(function(){think(b,'heartbeat '+hb(b.hb)+' from its own wallet <span class="tag">REHEARSAL</span>');$('#mHb').textContent=hb(b.hb);think(b,'next read in '+READ_EVERY+'s · next heartbeat at '+hb(b.hb+3600)+'.');sheet();READING=null;beat()},500)},500)},400)})}).catch(function(){setScreens(b,url,'<span class="u">the open web did not answer. it will try again next hour.</span>');think(b,'no answer from the open web. no line this hour.');READING=null})}
 function setScreens(b,url,screen){$('#liveUrl').textContent=url.replace('https://','');$('#liveScreen').innerHTML=screen;$('#miniUrl').textContent=url.replace('https://','');$('#miniScreen').innerHTML=screen;$('#liveSt').className='st '+(awake(b)?'on':'off');$('#liveSt').textContent=awake(b)?'live_':'dark';$('#miniSt').className=$('#liveSt').className;$('#miniSt').textContent=$('#liveSt').textContent;$('#mName').textContent=b.name+' / '+b.obs}
 function typeRows(b,url,hits,done){var i=0,html='';function step(){if(i>=hits.length){done();return}var h=hits[i];var dom='';try{dom=new URL(h.url||'https://news.ycombinator.com').hostname.replace(/^www\./,'')}catch(e){}
     html+='<span class="hit'+(i===0?' hi':'')+'"><span class="t">'+esc(h.title)+'</span>\n<span class="u">'+esc(dom||'news.ycombinator.com')+' · '+(h.points||0)+' points · '+(h.num_comments||0)+' comments</span></span>';
@@ -362,8 +369,8 @@ function clock(){var d=new Date();var s=3600-(d.getUTCMinutes()*60+d.getUTCSecon
 setInterval(function(){clock();B.forEach(tick);document.querySelectorAll('[data-cd]').forEach(function(el){var b=get(el.dataset.cd);if(b)el.textContent=cd(ttl(b))});document.querySelectorAll('[data-life]').forEach(function(el){var b=get(el.dataset.life);if(b)el.firstChild.style.width=pct(b)+'%'});
   if(SEL){var b=get(SEL);if(b){$('#sTtl').textContent=cd(ttl(b));$('#mTtl').textContent=cd(ttl(b));$('#sBal').textContent=fmt(balance(b));$('#sLife').firstChild.style.width=pct(b)+'%';$('#sLifePct').textContent=pct(b)+'% of cap · '+fmt(balance(b));if(!awake(b)&&$('#sState').textContent!=='dormant'){sheet();render();think(b,'00:00:00. <b>went dark.</b>');live(b)}}}
   $('#nLive').textContent=B.filter(awake).length},1000);clock();
-// hourly read for every awake being while the tab is open (rehearsal of the real cadence)
-setInterval(function(){var b=SEL?get(SEL):null;if(b&&awake(b)&&!document.hidden)read(b,true)},3600000);
+// the read cadence: every READ_EVERY seconds while the tab is open
+setInterval(function(){var b=SEL?get(SEL):null;if(!b)return;var left=Math.max(0,Math.round(NEXT_READ-now()));$('#mNext').textContent=awake(b)?cd(left):'—';if(b&&awake(b)&&!document.hidden&&left<=0&&!READING)read(b,true)},1000);
 // keys: / searches, esc closes, j/k walk the board
 addEventListener('keydown',function(e){var tag=(e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea'||tag==='select'){if(e.key==='Escape')e.target.blur();return}
   if(e.key==='/'){e.preventDefault();$('#fQ').focus()}else if(e.key==='`'){e.preventDefault();$('#terminal').scrollIntoView({behavior:'smooth'});TERM.focus()}else if(e.key==='Escape'&&SEL){$('#sX').click()}else if(e.key==='j'||e.key==='k'){var L=list();if(!L.length)return;var i=-1;for(var n=0;n<L.length;n++)if(L[n].id===SEL)i=n;i=e.key==='j'?Math.min(L.length-1,i+1):Math.max(0,i-1);select(L[i].id)}});
@@ -375,7 +382,7 @@ var TERM=(function(){var out=$('#tOut'),inp=$('#tIn'),hist=[],hi=-1;
   function find(q){if(!q)return SEL?get(SEL):null;q=String(q).toLowerCase().replace(/^\$/,'');for(var i=0;i<B.length;i++){var b=B[i];if(b.id===q||b.name.toLowerCase()===q||b.tk.toLowerCase()===q)return b}return null}
   function table(L){if(!L.length)return print('nothing here.','z');print(pad('id',6)+pad('name',10)+pad('ticker',8)+pad('state',9)+pad('ttl',14)+pad('balance',10)+'obsession','z');L.forEach(function(b){print(pad(b.id,6)+pad(b.name,10)+pad('$'+b.tk,8)+(awake(b)?'<span class="ok">'+pad('reading',9)+'</span>':'<span class="err">'+pad('dormant',9)+'</span>')+pad(cd(ttl(b)),14)+pad(fmt(balance(b)),10)+esc(b.obs))})}
   var C={
-    help:function(){print('<b>help</b>            this list\n<b>ls</b> [awake|dormant|all]   the board\n<b>open</b> &lt;id|name&gt;  open a being\'s page\n<b>ttl</b> [id]        its countdown\n<b>feed</b> &lt;id&gt; &lt;usdg&gt; send a rehearsal fee\n<b>read</b> [id]       make it read now\n<b>lines</b> [id]      what it wrote\n<b>launch</b> &lt;name&gt; &lt;TICKER&gt; &lt;obsession…&gt;  birth a rehearsal being\n<b>wallet</b> [id]     the pad wallet, or a being\'s\n<b>rules</b>           burn, cap, heartbeat\n<b>now</b>             utc clock, next heartbeat\n<b>reset</b>           three beings, three states\n<b>clear</b>')},
+    help:function(){print('<b>help</b>            this list\n<b>ls</b> [awake|dormant|all]   the board\n<b>open</b> &lt;id|name&gt;  open a being\'s page\n<b>ttl</b> [id]        its countdown\n<b>feed</b> &lt;id&gt; &lt;usdg&gt; send a rehearsal fee\n<b>read</b> [id]       make it read now (it reads every 60 s on its own)\n<b>lines</b> [id]      what it wrote\n<b>launch</b> &lt;name&gt; &lt;TICKER&gt; &lt;obsession…&gt;  birth a rehearsal being\n<b>wallet</b> [id]     the pad wallet, or a being\'s\n<b>rules</b>           burn, cap, heartbeat\n<b>now</b>             utc clock, next heartbeat\n<b>reset</b>           three beings, three states\n<b>clear</b>')},
     ls:function(a){var f=a[0]||'all';table(B.filter(function(b){return f==='all'||(f==='awake'?awake(b):!awake(b))}).sort(function(x,y){return ttl(y)-ttl(x)}))},
     board:function(a){C.ls(a)},
     open:function(a){var b=find(a[0]);if(!b)return print('no being "'+esc(a[0]||'')+'". try ls.','err');if(!awake(b)&&F.state==='awake'){F.state='all';setOn('#fState',$('#fState button[data-f=all]'))}select(b.id,{scroll:false});print('opened <b>'+esc(b.name)+'</b> · $'+esc(b.tk)+' · '+(awake(b)?'<span class="ok">reading</span>':'<span class="err">dormant</span>')+' · ttl '+cd(ttl(b))+' · <a href="#b='+b.id+'">#b='+b.id+'</a>')},
@@ -386,7 +393,7 @@ var TERM=(function(){var out=$('#tOut'),inp=$('#tIn'),hist=[],hi=-1;
     lines:function(a){var b=find(a[0]);if(!b)return print('which being? lines &lt;id&gt;','err');if(!b.lines.length)return print('nothing written yet.','z');b.lines.slice(0,8).forEach(function(l){var t=new Date(l.t*1000);print('<span class="z">'+String(t.getUTCHours()).padStart(2,'0')+':'+String(t.getUTCMinutes()).padStart(2,'0')+'z</span> '+esc(l.txt)+(l.url?' <a href="'+esc(l.url)+'" target="_blank" rel="noopener">↗</a>':''))})},
     launch:function(a){if(a.length<3)return print('launch &lt;name&gt; &lt;TICKER&gt; &lt;obsession…&gt;','err');$('#lName').value=a[0].slice(0,24);$('#lTk').value=a[1].slice(0,8);$('#lObs').value=a.slice(2).join(' ').slice(0,60);chk();$('#lGo').click();var b=B[0];print('<b>'+esc(b.name)+'</b> is born, dormant, wired to $'+esc(b.tk)+' · wallet '+short(addr(b.id))+' · ttl 00:00:00 until its first fee. try: feed '+b.id+' 1','ok')},
     wallet:function(a){if(a[0]){var b=find(a[0]);if(!b)return print('no being "'+esc(a[0])+'"','err');return print(esc(b.name)+' · '+addr(b.id)+' <span class="tag">REHEARSAL</span>')}print('pad wallet · <b>'+(CONFIG.pad||'not set')+'</b>'+(CONFIG.pad?' · <a href="https://blockscan.com/address/'+CONFIG.pad+'" target="_blank" rel="noopener">blockscan ↗</a>':''));print('being wallets are rehearsal until the contract is live. wallet &lt;id&gt; shows one.','z')},
-    rules:function(){print('burn      <b>$0.02 / min</b> · one cent every thirty seconds · $28.80 / day\nttl       balance ÷ burn, in seconds\ncap       <b>30 days</b> · $864.00 · above it → holders, pro rata, USDG\nline      one an hour, signed by the being\'s wallet\nheartbeat one transaction an hour, from the being\'s wallet\ndormant   at 00:00:00 · wakes on the next fee')},
+    rules:function(){print('burn      <b>$0.02 / min</b> · one cent every thirty seconds · $28.80 / day\nttl       balance ÷ burn, in seconds\ncap       <b>30 days</b> · $864.00 · above it → holders, pro rata, USDG\nline      one a minute, signed by the being\'s wallet\nheartbeat one transaction an hour, from the being\'s wallet\ndormant   at 00:00:00 · wakes on the next fee')},
     now:function(){var d=new Date();print(d.toISOString().replace('T',' ').slice(0,19)+'z · next heartbeat in <b>'+cd(3600-(d.getUTCMinutes()*60+d.getUTCSeconds()))+'</b> · '+B.filter(awake).length+' awake of '+B.length)},
     reset:function(){$('#lReset').click();print('rehearsal reset. three beings, three states.','ok')},
     clear:function(){out.innerHTML=''},
